@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | VSKV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Page Transition CSS -->
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    body.fade-in {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md shadow-md z-50">
+    <nav class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-blue-400">VSKV</h1>
+      <ul class="flex space-x-6 font-medium">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html" class="text-blue-400">Projects</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Projects -->
+  <section class="pt-32 pb-20 container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">My Projects</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Project Card -->
+      <div class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:scale-105 transition" data-aos="zoom-in">
+        <h3 class="text-xl font-semibold mb-3">Smart Password Assistant</h3>
+        <p class="text-gray-400 mb-4">A web tool for password strength checking and secure password generation..</p>
+        <div class="flex space-x-4">
+          <a href="https://github.com/VARDHANVALLURI/passly" target="_blank" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">Code</a>
+          <a href="https://vardhanvalluri.github.io/passly" target="_blank" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Demo</a>
+        </div>
+      </div>
+
+      <!-- Add More Project Cards -->
+      <div class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:scale-105 transition" data-aos="zoom-in">
+        <h3 class="text-xl font-semibold mb-3">Smart Farmer App</h3>
+        <p class="text-gray-400 mb-4">Smart Farmer is a lightweight web app that provides essential tools and insights to support smarter paddy farming decisions.</p>
+        <div class="flex space-x-4">
+          <a href="https://github.com/VARDHANVALLURI/SMART-FARMER" target="_blank" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">Code</a>
+          <a href="https://vardhanvalluri.github.io/SMART-FARMER/" target="_blank" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Demo</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-black text-gray-400 py-4 text-center">
+    © 2025 VSKV Portfolio | Built with ❤️
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration: 1000, once: true});
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+    });
+    document.querySelectorAll("a").forEach(link => {
+      if (link.hostname === window.location.hostname) {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          if (!target.startsWith("#") && !link.hasAttribute("target")) {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 400);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

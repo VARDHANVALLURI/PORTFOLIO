@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certifications | VSKV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Page Transition CSS -->
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    body.fade-in {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
+    <nav class="container mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-bold text-blue-600">VSKV</h1>
+      <ul class="flex space-x-6 font-medium">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="certifications.html" class="text-blue-600">Certifications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Certifications -->
+  <section class="pt-32 pb-20 container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Certifications</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Certificate Card -->
+      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-right">
+        <h3 class="text-xl font-semibold mb-2">Ethical Hacking Basics</h3>
+        <p class="text-gray-600 mb-3">Coursera | 2024</p>
+        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
+      </div>
+
+      <!-- Another Certificate -->
+      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-left">
+        <h3 class="text-xl font-semibold mb-2">Cybersecurity Essentials</h3>
+        <p class="text-gray-600 mb-3">Cisco Networking Academy | 2025</p>
+        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
+      </div>
+      
+      <!-- Another Certificate -->
+      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-left">
+        <h3 class="text-xl font-semibold mb-2">Foundations of Ethical Hacking</h3>
+        <p class="text-gray-600 mb-3">MSME GOVT OF INDIA | 2025</p>
+        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-black text-gray-400 py-4 text-center">
+    © 2025 VSKV Portfolio | Built with ❤️
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration: 1000, once: true});
+    document.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+    });
+    document.querySelectorAll("a").forEach(link => {
+      if (link.hostname === window.location.hostname) {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          if (!target.startsWith("#") && !link.hasAttribute("target")) {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 400);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
