@@ -3,81 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certifications | VSKV</title>
+  <title>Certifications | Sri Krishna Vardan Valluri</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Page Transition CSS -->
   <style>
-    body {
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
+    body { font-family: 'Public Sans', sans-serif; background-color: #faf9f6; }
+    h1, h2, h3 { font-family: 'Fraunces', serif; }
+    
+    /* Subtle fade-in for the whole page */
+    body { opacity: 0; transition: opacity 0.8s ease-in-out; }
+    body.fade-in { opacity: 1; }
+
+    .cert-row {
+      transition: all 0.3s ease;
+      border-bottom: 1px solid #e5e5e0;
     }
-    body.fade-in {
-      opacity: 1;
+    .cert-row:hover {
+      background-color: #f3f2ee;
+      padding-left: 8px;
     }
+
+    .nav-underline { position: relative; }
+    .nav-underline::after {
+      content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0;
+      background-color: #1a1a1a; transition: width 0.3s ease;
+    }
+    .nav-underline:hover::after { width: 100%; }
   </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="text-stone-900 selection:bg-stone-200">
 
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-md z-50">
-    <nav class="container mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-bold text-blue-600">VSKV</h1>
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="certifications.html" class="text-blue-600">Certifications</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+  <header class="fixed top-0 w-full z-50 bg-[#faf9f6]/80 backdrop-blur-sm">
+    <nav class="container mx-auto max-w-5xl flex justify-between items-center py-6 px-8">
+      <h1 class="text-xl font-bold tracking-tight"><a href="index.html">S.K.V.V.</a></h1>
+      <ul class="flex space-x-10 text-[13px] font-medium uppercase tracking-[0.2em]">
+        <li><a href="index.html" class="nav-underline">Index</a></li>
+        <li><a href="projects.html" class="nav-underline">Projects</a></li>
+        <li><a href="certifications.html" class="nav-underline border-b border-stone-900 pb-1">Certifications</a></li>
+        <li><a href="index.html#contact" class="nav-underline">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Certifications -->
-  <section class="pt-32 pb-20 container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Certifications</h2>
-    <div class="grid md:grid-cols-2 gap-8">
+  <section class="pt-40 pb-16 px-8">
+    <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">Credentials</h2>
+      <p class="text-stone-500 max-w-md uppercase tracking-[0.2em] text-[10px] font-bold leading-loose">
+        Validated Expertise // Academic & Professional Verifications
+      </p>
+    </div>
+  </section>
 
-      <!-- Certificate Card -->
-      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-right">
-        <h3 class="text-xl font-semibold mb-2">Ethical Hacking Basics</h3>
-        <p class="text-gray-600 mb-3">Coursera | 2024</p>
-        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
-      </div>
-
-      <!-- Another Certificate -->
-      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Cybersecurity Essentials</h3>
-        <p class="text-gray-600 mb-3">Cisco Networking Academy | 2025</p>
-        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
-      </div>
+  <section class="pb-32 px-8">
+    <div class="container mx-auto max-w-5xl">
       
-      <!-- Another Certificate -->
-      <div class="bg-gray-100 p-6 rounded-2xl shadow hover:shadow-xl transition" data-aos="fade-left">
-        <h3 class="text-xl font-semibold mb-2">Foundations of Ethical Hacking</h3>
-        <p class="text-gray-600 mb-3">MSME GOVT OF INDIA | 2025</p>
-        <span class="px-3 py-1 text-sm bg-green-100 text-green-600 rounded-full">✅ Verified</span>
+      <div class="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-stone-900 text-[11px] uppercase tracking-widest font-bold text-stone-400">
+        <div class="col-span-1">Year</div>
+        <div class="col-span-6">Certification Name</div>
+        <div class="col-span-3">Issuing Organization</div>
+        <div class="col-span-2 text-right">Status</div>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up">
+        <div class="col-span-1 text-sm font-medium text-stone-400">2025</div>
+        <div class="col-span-6">
+          <h3 class="text-xl md:text-2xl font-bold">Cybersecurity Essentials</h3>
+        </div>
+        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">Cisco Networking Academy</div>
+        <div class="col-span-2 text-right">
+          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-span-1 text-sm font-medium text-stone-400">2025</div>
+        <div class="col-span-6">
+          <h3 class="text-xl md:text-2xl font-bold">Foundations of Ethical Hacking</h3>
+        </div>
+        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">MSME Govt of India</div>
+        <div class="col-span-2 text-right">
+          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-span-1 text-sm font-medium text-stone-400">2024</div>
+        <div class="col-span-6">
+          <h3 class="text-xl md:text-2xl font-bold">Ethical Hacking Basics</h3>
+        </div>
+        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">Coursera</div>
+        <div class="col-span-2 text-right">
+          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <footer class="bg-black text-gray-400 py-4 text-center">
-    © 2025 VSKV Portfolio | Built with ❤️
+  <footer class="py-12 border-t border-stone-200">
+    <div class="container mx-auto max-w-5xl px-8 flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-stone-400">
+      <p>&copy; 2025 S.K.V.V.</p>
+      <a href="index.html" class="hover:text-stone-900 transition">Return to Home</a>
+    </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({duration: 1000, once: true});
+    AOS.init({ duration: 1000, once: true });
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("fade-in");
     });
+
+    // Page Transition
     document.querySelectorAll("a").forEach(link => {
-      if (link.hostname === window.location.hostname) {
+      if (link.hostname === window.location.hostname && !link.hash) {
         link.addEventListener("click", e => {
           const target = link.getAttribute("href");
-          if (!target.startsWith("#") && !link.hasAttribute("target")) {
+          if (target !== "#" && !link.hasAttribute("target")) {
             e.preventDefault();
             document.body.classList.remove("fade-in");
             setTimeout(() => {
