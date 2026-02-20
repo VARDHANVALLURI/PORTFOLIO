@@ -3,80 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | VSKV</title>
+  <title>Projects | Sri Krishna Vardan Valluri</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Page Transition CSS -->
   <style>
-    body {
-      opacity: 0;
-      transition: opacity 0.6s ease-in-out;
+    body { font-family: 'Public Sans', sans-serif; background-color: #faf9f6; transition: opacity 0.8s ease-in-out; opacity: 0; }
+    body.fade-in { opacity: 1; }
+    h1, h2, h3 { font-family: 'Fraunces', serif; }
+    
+    .project-container {
+      border-bottom: 1px solid #e5e5e0;
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
     }
-    body.fade-in {
-      opacity: 1;
+    .project-container:last-child { border-bottom: none; }
+
+    .nav-underline { position: relative; }
+    .nav-underline::after {
+      content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0;
+      background-color: #1a1a1a; transition: width 0.3s ease;
+    }
+    .nav-underline:hover::after { width: 100%; }
+    
+    .btn-action {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: all 0.3s ease;
     }
   </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="text-stone-900 selection:bg-stone-200">
 
-  <!-- Navbar -->
-  <header class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md shadow-md z-50">
-    <nav class="container mx-auto flex justify-between items-center py-4 px-6">
-      <h1 class="text-2xl font-bold text-blue-400">VSKV</h1>
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html" class="text-blue-400">Projects</a></li>
-        <li><a href="certifications.html">Certifications</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+  <header class="fixed top-0 w-full z-50 bg-[#faf9f6]/80 backdrop-blur-sm">
+    <nav class="container mx-auto max-w-5xl flex justify-between items-center py-6 px-8">
+      <h1 class="text-xl font-bold tracking-tight"><a href="index.html">S.K.V.V.</a></h1>
+      <ul class="flex space-x-10 text-[13px] font-medium uppercase tracking-[0.2em]">
+        <li><a href="index.html" class="nav-underline">Index</a></li>
+        <li><a href="projects.html" class="nav-underline border-b border-stone-900 pb-1">Projects</a></li>
+        <li><a href="certifications.html" class="nav-underline">Certifications</a></li>
+        <li><a href="index.html#contact" class="nav-underline">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Projects -->
-  <section class="pt-32 pb-20 container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">My Projects</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-
-      <!-- Project Card -->
-      <div class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:scale-105 transition" data-aos="zoom-in">
-        <h3 class="text-xl font-semibold mb-3">Smart Password Assistant</h3>
-        <p class="text-gray-400 mb-4">A web tool for password strength checking and secure password generation..</p>
-        <div class="flex space-x-4">
-          <a href="https://github.com/VARDHANVALLURI/passly" target="_blank" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">Code</a>
-          <a href="https://vardhanvalluri.github.io/passly" target="_blank" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Demo</a>
-        </div>
-      </div>
-
-      <!-- Add More Project Cards -->
-      <div class="bg-gray-800 p-6 rounded-2xl shadow-lg hover:scale-105 transition" data-aos="zoom-in">
-        <h3 class="text-xl font-semibold mb-3">Smart Farmer App</h3>
-        <p class="text-gray-400 mb-4">Smart Farmer is a lightweight web app that provides essential tools and insights to support smarter paddy farming decisions.</p>
-        <div class="flex space-x-4">
-          <a href="https://github.com/VARDHANVALLURI/SMART-FARMER" target="_blank" class="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700">Code</a>
-          <a href="https://vardhanvalluri.github.io/SMART-FARMER/" target="_blank" class="px-4 py-2 bg-green-600 rounded hover:bg-green-700">Demo</a>
-        </div>
-      </div>
-
+  <section class="pt-40 pb-20 px-8">
+    <div class="container mx-auto max-w-5xl" data-aos="fade-up">
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">Selected <br> Technical Work</h2>
+      <p class="text-stone-500 max-w-sm uppercase tracking-widest text-[10px] font-bold leading-loose">
+        Systems Development // Practical Problem Solving // Security Utilities
+      </p>
     </div>
   </section>
 
-  <footer class="bg-black text-gray-400 py-4 text-center">
-    © 2025 VSKV Portfolio | Built with ❤️
+  <section class="pb-32 px-8">
+    <div class="container mx-auto max-w-5xl">
+
+      <div class="grid md:grid-cols-12 gap-12 project-container" data-aos="fade-up">
+        <div class="md:col-span-4">
+          <p class="text-[11px] font-bold text-stone-400 uppercase tracking-[0.3em] mb-4">01 // Security Utility</p>
+          <h3 class="text-3xl font-bold mb-4">Smart Password Assistant</h3>
+        </div>
+        <div class="md:col-span-8">
+          <p class="text-lg text-stone-600 leading-relaxed mb-8">
+            A web tool for password strength checking and secure password generation. Designed to provide immediate feedback on credential robustness and facilitate secure user practices.
+          </p>
+          <div class="flex space-x-8">
+            <a href="https://github.com/VARDHANVALLURI/passly" target="_blank" class="btn-action border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-300">View Source</a>
+            <a href="https://vardhanvalluri.github.io/passly" target="_blank" class="btn-action border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-300">Live Demo</a>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-12 gap-12 project-container" data-aos="fade-up">
+        <div class="md:col-span-4">
+          <p class="text-[11px] font-bold text-stone-400 uppercase tracking-[0.3em] mb-4">02 // Social Innovation</p>
+          <h3 class="text-3xl font-bold mb-4">Smart Farmer App</h3>
+        </div>
+        <div class="md:col-span-8">
+          <p class="text-lg text-stone-600 leading-relaxed mb-8">
+            Smart Farmer is a lightweight web app that provides essential tools and insights to support smarter paddy farming decisions, tailored for accessibility and practical agricultural utility.
+          </p>
+          <div class="flex space-x-8">
+            <a href="https://github.com/VARDHANVALLURI/SMART-FARMER" target="_blank" class="btn-action border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-300">View Source</a>
+            <a href="https://vardhanvalluri.github.io/SMART-FARMER/" target="_blank" class="btn-action border-b border-stone-900 pb-1 hover:text-stone-500 hover:border-stone-300">Live Demo</a>
+          </div>
+        </div>
+      </div>
+      </div>
+  </section>
+
+  <footer class="py-12 border-t border-stone-200">
+    <div class="container mx-auto max-w-5xl px-8 flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-stone-400">
+      <p>&copy; 2025 S.K.V.V.</p>
+      <a href="index.html" class="hover:text-stone-900 transition font-bold tracking-widest">Return Home</a>
+    </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({duration: 1000, once: true});
+    AOS.init({ duration: 1000, once: true });
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("fade-in");
     });
+
+    // Internal navigation transitions
     document.querySelectorAll("a").forEach(link => {
-      if (link.hostname === window.location.hostname) {
+      if (link.hostname === window.location.hostname && !link.hash) {
         link.addEventListener("click", e => {
           const target = link.getAttribute("href");
-          if (!target.startsWith("#") && !link.hasAttribute("target")) {
+          if (target !== "#" && !link.hasAttribute("target")) {
             e.preventDefault();
             document.body.classList.remove("fade-in");
             setTimeout(() => {
