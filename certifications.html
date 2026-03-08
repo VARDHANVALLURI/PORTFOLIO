@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +9,159 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Public+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
-    body { font-family: 'Public Sans', sans-serif; background-color: #faf9f6; }
-    h1, h2, h3 { font-family: 'Fraunces', serif; }
-    
+    body {
+      font-family: 'Public Sans', sans-serif;
+      background-color: #faf9f6;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Fraunces', serif;
+    }
+
     /* Subtle fade-in for the whole page */
-    body { opacity: 0; transition: opacity 0.8s ease-in-out; }
-    body.fade-in { opacity: 1; }
+    body {
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    body.fade-in {
+      opacity: 1;
+    }
 
     .cert-row {
-      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       border-bottom: 1px solid #e5e5e0;
-    }
-    .cert-row:hover {
-      background-color: #f3f2ee;
-      padding-left: 8px;
+      display: grid;
+      cursor: pointer;
     }
 
-    .nav-underline { position: relative; }
-    .nav-underline::after {
-      content: ''; position: absolute; width: 0; height: 1px; bottom: -2px; left: 0;
-      background-color: #1a1a1a; transition: width 0.3s ease;
+    .cert-row:last-child {
+      border-bottom: none;
     }
-    .nav-underline:hover::after { width: 100%; }
+
+    .cert-row:hover {
+      background-color: #ecebe6;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 8px;
+      border-bottom-color: transparent;
+      transform: translateY(-2px);
+      z-index: 70;
+    }
+
+    /* Page Blur Overlay */
+    #page-blur-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(250, 249, 246, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 60;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body:has(.cert-row:hover) #page-blur-overlay {
+      opacity: 1;
+    }
+
+    .cert-arrow {
+      opacity: 0;
+      transform: translateX(-10px) rotate(-45deg);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .cert-row:hover .cert-arrow {
+      opacity: 1;
+      transform: translateX(0) rotate(-45deg);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: #10b981;
+      border-radius: 50%;
+      margin-right: 6px;
+      box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Certificate Tooltip Image Styles */
+    .cert-image-tooltip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 440px;
+      height: 300px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 6px white;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 100;
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.15s ease-out;
+      transform: translate(-1000px, -1000px);
+      will-change: transform, opacity;
+    }
+
+    .cert-row:hover .cert-image-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Verification ID Copy Button */
+    .verify-id-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #f3f2ee;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #57534e;
+      border: 1px solid #e5e5e0;
+      transition: all 0.2s;
+    }
+
+    .verify-id-badge:hover {
+      background-color: #e5e5e0;
+      color: #1c1917;
+      border-color: #d6d3d1;
+    }
+
+    .verify-id-badge svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .cert-image-tooltip {
+        display: none;
+        /* Hide images on mobile for cleaner layout */
+      }
+    }
   </style>
 </head>
+
 <body class="text-stone-900 selection:bg-stone-200">
+  <div id="page-blur-overlay"></div>
 
   <header class="fixed top-0 w-full z-50 bg-[#faf9f6]/80 backdrop-blur-sm">
     <nav class="container mx-auto max-w-5xl flex justify-between items-center py-6 px-8">
-      <h1 class="text-xl font-bold tracking-tight"><a href="index.html"></a></h1>
+      <h1 class="text-xl font-bold tracking-tight"><a href="index.html">S.K.V.V.</a></h1>
       <ul class="flex space-x-10 text-[13px] font-medium uppercase tracking-[0.2em]">
         <li><a href="index.html" class="nav-underline">Index</a></li>
         <li><a href="projects.html" class="nav-underline">Projects</a></li>
@@ -60,52 +182,87 @@
 
   <section class="pb-32 px-8">
     <div class="container mx-auto max-w-5xl">
-      
-      <div class="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-stone-900 text-[11px] uppercase tracking-widest font-bold text-stone-400">
+
+      <div
+        class="hidden md:grid grid-cols-12 gap-4 pb-4 border-b border-stone-900 text-[11px] uppercase tracking-widest font-bold text-stone-400">
         <div class="col-span-1">Year</div>
         <div class="col-span-6">Certification Name</div>
         <div class="col-span-3">Issuing Organization</div>
         <div class="col-span-2 text-right">Status</div>
       </div>
 
-      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up">
-        <div class="col-span-1 text-sm font-medium text-stone-400">2025</div>
-        <div class="col-span-6">
-          <h3 class="text-xl md:text-2xl font-bold">Cybersecurity Essentials</h3>
+      <a href="https://www.credly.com/badges/01f470cd-9c4b-4a5c-9094-951ca8f578f1/linked_in_profile" target="_blank"
+        rel="noopener noreferrer" class="relative grid md:grid-cols-12 gap-4 py-8 cert-row items-center group"
+        data-aos="fade-up">
+        <div class="col-span-1 text-sm font-medium text-stone-400">2026</div>
+        <div class="col-span-6 flex items-center justify-between md:justify-start relative z-20">
+          <h3 class="text-xl md:text-2xl font-bold group-hover:text-stone-700 transition-colors">Introduction to
+            Cybersecurity
+          </h3>
+          <svg class="cert-arrow ml-4 w-5 h-5 text-stone-400 hidden md:block" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
         </div>
-        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">Cisco Networking Academy</div>
-        <div class="col-span-2 text-right">
-          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
+        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium mt-2 md:mt-0 relative z-20">
+          Cisco Networking Academy</div>
+        <div class="col-span-2 text-left md:text-right mt-4 md:mt-0 relative z-20">
+          <span
+            class="inline-flex items-center text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full group-hover:bg-white group-hover:border-transparent group-hover:shadow-sm transition-all duration-300">
+            <span class="status-dot"></span> Validated
+          </span>
         </div>
-      </div>
+        <!-- Tooltip Image -->
+        <div class="cert-image-tooltip" style="background-image: url('certificate1.jpg');"></div>
+      </a>
 
-      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-span-1 text-sm font-medium text-stone-400">2025</div>
-        <div class="col-span-6">
-          <h3 class="text-xl md:text-2xl font-bold">Foundations of Ethical Hacking</h3>
+      <a href="https://paloaltonetworksacademy.net/mod/customcert/verify_certificate.php" target="_blank"
+        rel="noopener noreferrer" class="relative grid md:grid-cols-12 gap-4 py-8 cert-row items-center group"
+        data-aos="fade-up" data-aos-delay="100">
+        <div class="col-span-1 text-sm font-medium text-stone-400">2026</div>
+        <div class="col-span-6 flex items-center justify-between md:justify-start relative z-20">
+          <h3 class="text-xl md:text-2xl font-bold group-hover:text-stone-700 transition-colors">Foundations of
+            Cybersecurity
+          </h3>
+          <svg class="cert-arrow ml-4 w-5 h-5 text-stone-400 hidden md:block" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
         </div>
-        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">MSME Govt of India</div>
-        <div class="col-span-2 text-right">
-          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
+        <div class="col-span-3 flex flex-col items-start gap-2 relative z-20">
+          <span class="text-sm text-stone-600 uppercase tracking-wider font-medium">Palo Alto Networks Cybersecurity
+            Academy</span>
+          <div
+            onclick="event.preventDefault(); event.stopPropagation(); navigator.clipboard.writeText('Dizpn5jnKe'); const t = this.querySelector('span'); const orig = t.innerText; t.innerText = 'Copied!'; setTimeout(() => t.innerText = orig, 2000);"
+            class="verify-id-badge relative z-50 mt-1 cursor-pointer" title="Copy Verification ID">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+              </path>
+            </svg>
+            <span>ID: Dizpn5jnKe</span>
+          </div>
         </div>
-      </div>
+        <div class="col-span-2 text-left md:text-right mt-4 md:mt-0 relative z-20">
+          <span
+            class="inline-flex items-center text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full group-hover:bg-white group-hover:border-transparent group-hover:shadow-sm transition-all duration-300">
+            <span class="status-dot"></span> Validated
+          </span>
+        </div>
+        <!-- Tooltip Image -->
+        <div class="cert-image-tooltip" style="background-image: url('certificate2.jpg');"></div>
+      </a>
 
-      <div class="grid md:grid-cols-12 gap-4 py-8 cert-row items-center" data-aos="fade-up" data-aos-delay="200">
-        <div class="col-span-1 text-sm font-medium text-stone-400">2024</div>
-        <div class="col-span-6">
-          <h3 class="text-xl md:text-2xl font-bold">Ethical Hacking Basics</h3>
-        </div>
-        <div class="col-span-3 text-sm text-stone-600 uppercase tracking-wider font-medium">Coursera</div>
-        <div class="col-span-2 text-right">
-          <span class="text-[9px] font-bold uppercase tracking-widest border border-stone-300 px-3 py-1 rounded-full">Validated</span>
-        </div>
-      </div>
+
 
     </div>
   </section>
 
   <footer class="py-12 border-t border-stone-200">
-    <div class="container mx-auto max-w-5xl px-8 flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-stone-400">
+    <div
+      class="container mx-auto max-w-5xl px-8 flex justify-between items-center text-[10px] uppercase tracking-[0.4em] text-stone-400">
       <p>&copy; 2025 S.K.V.V.</p>
       <a href="index.html" class="hover:text-stone-900 transition">Return to Home</a>
     </div>
@@ -116,6 +273,30 @@
     AOS.init({ duration: 1000, once: true });
     document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("fade-in");
+    });
+
+    // Hover Image Cursor Tracking
+    document.querySelectorAll('.cert-row').forEach(row => {
+      const img = row.querySelector('.cert-image-tooltip');
+      if (img) {
+        row.addEventListener('mouseenter', (e) => {
+          if (window.innerWidth > 768) {
+            let xOffset = 30;
+            if (e.clientX + xOffset + 440 > window.innerWidth) xOffset = -(440 + 30);
+            img.style.transition = 'none'; // Jump to mouse instantly without animating from 0,0
+            img.style.transform = `translate(${e.clientX + xOffset}px, ${e.clientY - 150}px)`;
+            setTimeout(() => { img.style.transition = ''; }, 10);
+          }
+        });
+
+        row.addEventListener('mousemove', (e) => {
+          if (window.innerWidth > 768) {
+            let xOffset = 30;
+            if (e.clientX + xOffset + 440 > window.innerWidth) xOffset = -(440 + 30);
+            img.style.transform = `translate(${e.clientX + xOffset}px, ${e.clientY - 150}px)`;
+          }
+        });
+      }
     });
 
     // Page Transition
@@ -135,5 +316,5 @@
     });
   </script>
 </body>
-</html>
 
+</html>
